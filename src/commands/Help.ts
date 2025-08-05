@@ -18,7 +18,7 @@ import { CommandType } from "../typings/enums";
 import { ExtendedCommandOptionData } from "../typings/types";
 import { SubcommandGroup } from "../typings/interfaces";
 import { Translator } from "../classes/Translator";
-import { $ } from "../services/translatePlaceholder";
+import $ from "../services/translatePlaceholder";
 
 export default class Help extends Command<[string]> {
 	constructor() {

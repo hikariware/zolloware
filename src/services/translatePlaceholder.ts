@@ -5,7 +5,7 @@ const constants: TranslatorType = {
 	bot: {
 		...constant.bot,
 		...config.bot,
-		token: "d3d3LnlvdXR1.YmUuY29tL3dhdGNoP3Y9ZFF3NHc.5V2dYY1E= ~NODOT~"
+		token: "d3d3LnlvdXR1.YmUuY29tL3dhdGNoP3Y9ZFF3NHc.5V2dYY1E="
 	}
 };
 
@@ -48,4 +48,4 @@ function get_translate(keys: string[], translator: TranslatorType): string | nul
 	return k as any;
 }
 
-export { $ };
+export default $;

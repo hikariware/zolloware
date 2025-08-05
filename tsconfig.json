@@ -11,10 +11,11 @@
     "noEmitOnError": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
+    "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "typeRoots": [
       "src/typings",

@@ -11,6 +11,7 @@ export default class Random extends MessageTrigger {
 	}
 
 	public execute(message: Message): boolean {
-		return void message.reply("hi") ?? true;
+		message.reply("hi");
+		return true;
 	}
 }

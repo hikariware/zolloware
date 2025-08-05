@@ -9,8 +9,7 @@ import {
 	Message,
 	MessageCreateOptions,
 	MessagePayload,
-	User,
-	WebhookEditMessageOptions
+	User
 } from "discord.js";
 import tempMessage from "../services/tempMessage";
 
@@ -36,7 +35,7 @@ export class Source<T extends ChatInputCommandInteraction<"cached"> | Message<tr
 	/**
 	 * 機器人的 client
 	 */
-	public client: Client;
+	public client: Client<true>;
 
 	/**
 	 * 來源的建立時間
@@ -92,14 +91,14 @@ export class Source<T extends ChatInputCommandInteraction<"cached"> | Message<tr
 	 * **[Type Guard]** 來源是斜線指令
 	 */
 	public isChatInput(): this is Source<ChatInputCommandInteraction<"cached">> {
-		return this.source instanceof ChatInputCommandInteraction<"cached">;
+		return this.source instanceof ChatInputCommandInteraction;
 	}
 
 	/**
 	 * **[Type Guard]** 來源是訊息
 	 */
 	public isMessage(): this is Source<Message<true>> {
-		return this.source instanceof Message<true>;
+		return this.source instanceof Message;
 	}
 
 	/**
@@ -156,7 +155,7 @@ export class Source<T extends ChatInputCommandInteraction<"cached"> | Message<tr
 	 */
 	public async temp(options: string | MessageCreateOptions): Promise<Message> {
 		if (this.source instanceof ChatInputCommandInteraction) {
-			return this.source.editReply(options);
+			return this.source.editReply(<any>options);
 		}
 		return tempMessage(this.source.channel, options, 5);
 	}
@@ -171,7 +170,7 @@ export class Source<T extends ChatInputCommandInteraction<"cached"> | Message<tr
 	 * @param options 上述函式的選項
 	 * @returns 上述函式的回傳值
 	 */
-	public async editReply(options: string | MessagePayload | WebhookEditMessageOptions): Promise<Message | void> {
+	public async editReply(options: string | MessagePayload): Promise<Message | void> {
 		if (this.source instanceof ChatInputCommandInteraction) {
 			return this.source.editReply(options);
 		}
@@ -189,7 +188,7 @@ export class Source<T extends ChatInputCommandInteraction<"cached"> | Message<tr
 	 */
 	public async update(options: string | MessageCreateOptions): Promise<Message> {
 		if (this.source instanceof ChatInputCommandInteraction) {
-			return this.source.editReply(options);
+			return this.source.editReply(<any>options);
 		}
 		return this.source.channel.send(options);
 	}

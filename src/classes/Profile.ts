@@ -95,7 +95,8 @@ export class Profile<T extends { [key: string]: any } = { [key: string]: any }> 
 	}
 
 	public async save() {
-		return void (await db.set(`${this.__prefix}${this.__id}`, this.raw)) ?? this;
+		await db.set(`${this.__prefix}${this.__id}`, this.raw)
+		return this;
 	}
 
 	public get raw() {

@@ -1,4 +1,4 @@
-import { Message, BaseMessageOptions, MessagePayload, TextBasedChannel } from "discord.js";
+import { Message, BaseMessageOptions, MessagePayload, SendableChannels } from "discord.js";
 
 /**
  * 在指定頻道中發送訊息，並在特定秒數後刪除，如果秒數是負數則不會刪除該訊息
@@ -8,7 +8,7 @@ import { Message, BaseMessageOptions, MessagePayload, TextBasedChannel } from "d
  * @returns 送出的訊息
  */
 export default async function tempMessage(
-	channel: TextBasedChannel,
+	channel: SendableChannels,
 	messageResolvable: string | MessagePayload | BaseMessageOptions,
 	duration: number = 5
 ): Promise<Message> {

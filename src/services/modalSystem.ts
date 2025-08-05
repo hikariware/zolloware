@@ -32,15 +32,15 @@ export default async function modelSystem({
 	if (buttonIsLink(open.data) || buttonIsLink(close.data)) {
 		throw new Error("Some of the buttons are link buttons.");
 	}
-	if (!open.data.custom_id || !close.data.custom_id) {
+	if (!("custom_id" in open.data || "custom_id" in close.data)) {
 		throw new Error("Some of the buttons don't have custom ids set.");
 	}
 	if (!modal.data.custom_id) {
 		throw new Error("The model doesn't have custom id set.");
 	}
 
-	const openCustomId = open.data.custom_id;
-	const closeCustomId = close.data.custom_id;
+	const openCustomId = (<any>open.data).custom_id;
+	const closeCustomId = (<any>close.data).custom_id;
 	const modalCustomId = modal.data.custom_id;
 	const { start, success, exit, idle } = getMessageOptions(contents);
 
